@@ -6,7 +6,7 @@ import { useState, useEffect } from "react";
 import useProducts from "@/data/products";
 import { useRouter } from "next/navigation";
 
-const page = () => {
+const Page = () => {
   const products = useProducts();
   const { productId } = useParams();
   const searchParams = useSearchParams();
@@ -320,4 +320,4 @@ const page = () => {
   );
 };
 
-export default page;
+export default Page;

@@ -6,7 +6,7 @@ import { useParams } from 'next/navigation';
 import Image from 'next/image';
 import Link from 'next/link';
 
-const ThankYouPage = () => {
+const Page = () => {
   const { orderID } = useParams();
   const [order, setOrder] = useState(null);
   const [loading, setLoading] = useState(true);
@@ -78,4 +78,4 @@ const ThankYouPage = () => {
   );
 };
 
-export default ThankYouPage;
+export default Page;
