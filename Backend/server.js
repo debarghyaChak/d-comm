@@ -6,6 +6,7 @@ const cors = require("cors");
 const Product = require("./models.js"); // ✅ Import the Product model
 const http = require("http"); // Required for WebSockets
 const socketIo = require("socket.io");
+const path = require("path");
 
 const app = express();
 app.use(express.json());
@@ -30,7 +31,7 @@ mongoose
   .then(() => console.log("MongoDB Connected! 🚀"))
   .catch((err) => console.error("MongoDB Connection Error:", err));
 
-  // ✅ Emit stock updates when products are modified
+// ✅ Emit stock updates when products are modified
 const updateStock = async (productId) => {
   const product = await Product.findById(productId);
   if (!product) {
@@ -41,12 +42,16 @@ const updateStock = async (productId) => {
   const cleanStock = {};
 
   // Ensure compatibility with both Maps and plain objects (for safety)
-  const stock = product.stock instanceof Map ? product.stock : new Map(Object.entries(product.stock));
+  const stock =
+    product.stock instanceof Map
+      ? product.stock
+      : new Map(Object.entries(product.stock));
 
   for (const [color, sizeMap] of stock.entries()) {
     cleanStock[color] = {};
 
-    const sizes = sizeMap instanceof Map ? sizeMap : new Map(Object.entries(sizeMap));
+    const sizes =
+      sizeMap instanceof Map ? sizeMap : new Map(Object.entries(sizeMap));
 
     for (const [size, qty] of sizes.entries()) {
       cleanStock[color][size] = qty;
@@ -62,10 +67,7 @@ const updateStock = async (productId) => {
   console.log(`✅ Stock updated and emitted for ${productId}:`, cleanStock);
 };
 
-
-
 module.exports = { io, updateStock }; // ✅ Export `updateStock` globally
-
 
 // ✅ Define a simple test route
 app.get("/", (req, res) => {
@@ -85,7 +87,14 @@ app.get("/products", async (req, res) => {
 // ✅ Now pass `io` to orderRoutes AFTER `io` is initialized
 const orderRoutes = require("./routes/orderRoutes")(io);
 app.use("/api", orderRoutes); // Attach order routes
+// ✅ Serve static files from the React build folder
+app.use(express.static(path.join(__dirname, "../build")));
 
+// ✅ For any other route not caught by the above, serve index.html
+app.get("*", (req, res) => {
+  res.sendFile(path.join(__dirname, "../build", "index.html"));
+});
 // ✅ Start the server
 const PORT = process.env.PORT || 5000;
+
 server.listen(PORT, () => console.log(`Server running on port ${PORT} 🔥`));
