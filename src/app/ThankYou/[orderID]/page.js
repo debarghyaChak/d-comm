@@ -11,6 +11,7 @@ const ThankYouPage = () => {
   const [order, setOrder] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const API_URL  = process.env.NEXT_PUBLIC_API_URL || "http://localhost:5000";
 
   useEffect(() => {
 
@@ -19,7 +20,7 @@ const ThankYouPage = () => {
 
     const fetchOrder = async () => {
       try {
-        const response = await axios.get(`http://localhost:5000/api/orders/${orderID}`);
+        const response = await axios.get(`${API_URL}/api/orders/${orderID}`);
         setOrder(response.data);
       } catch (err) {
         setError('Failed to fetch order details.');
