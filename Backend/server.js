@@ -8,6 +8,7 @@ const http = require("http"); // Required for WebSockets
 const socketIo = require("socket.io");
 
 
+
 const app = express();
 app.use(express.json());
 app.use(cors()); // ✅ Enable cross-origin requests
@@ -88,5 +89,8 @@ const orderRoutes = require("./routes/orderRoutes")(io);
 app.use("/api", orderRoutes); // Attach order routes
 
 // ✅ Start the server
+// ✅ Serve static files from the React build folder
+
+
 const PORT = process.env.PORT || 5000;
 server.listen(PORT, () => console.log(`Server running on port ${PORT} 🔥`));
