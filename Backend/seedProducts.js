@@ -29,7 +29,7 @@ const products = [
     name: "Nike Jordan I",
     description: "Classic basketball sneakers with premium leather.",
     price: 440,
-    image: "/images/product2.webp",
+    image: "/Images/product2.webp",
     stock: {
       Red: { S: 6, M: 5, L: 4, XL: 4 },
       Blue: { S: 5, M: 6, L: 4, XL: 4 },
@@ -41,7 +41,7 @@ const products = [
     name: "Nike Jordan II",
     description: "Classic basketball sneakers with premium leather.",
     price: 290,
-    image: "/images/product3.jpg",
+    image: "/Images/product3.jpg",
     stock: {
       Red: { S: 7, M: 6, L: 5, XL: 5 },
       Blue: { S: 6, M: 7, L: 5, XL: 5 },
@@ -53,7 +53,7 @@ const products = [
     name: "Nike Jordan III",
     description: "Classic basketball sneakers with premium leather.",
     price: 540,
-    image: "/images/product4.jpg",
+    image: "/Images/product4.jpg",
     stock: {
       Red: { S: 8, M: 7, L: 6, XL: 6 },
       Blue: { S: 7, M: 8, L: 6, XL: 6 },

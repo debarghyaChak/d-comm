@@ -63,10 +63,10 @@ const Page = () => {
         <h1 className="text-xl font-bold text-blue-600 mb-2">Customer Details</h1>
         <div className="bg-gray-100 p-4 rounded mb-4 text-left">
           <p><strong>Name</strong> {order.customer.fullName}</p>
-          <p><strong>Product:</strong> {order.customer.email}</p>
-          <p><strong>Color:</strong> {order.customer.phone}</p>
-          <p><strong>Size:</strong> {order.customer.address}</p>
-          <p><strong>Quantity:</strong> {order.customer.cityStateZip}</p>
+          <p><strong>Email:</strong> {order.customer.email}</p>
+          <p><strong>Phone:</strong> {order.customer.phone}</p>
+          <p><strong>address:</strong> {order.customer.address}</p>
+          <p><strong>Zip:</strong> {order.customer.cityStateZip}</p>
          
         </div>
 
